@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>一个blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta name="description" content="Web安全相关，大概">
+<meta property="og:type" content="website">
+<meta property="og:title" content="一个blog">
 <meta property="og:url" content="http://tyelixy.github.io/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="一个blog">
+<meta property="og:description" content="Web安全相关，大概">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="tyelixy">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="一个blog" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon.png">
@@ -42,7 +44,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">一个blog</a>
       </h1>
       
     </div>
@@ -107,17 +109,46 @@
 <li>SECRET_COOKIE 未知</li>
 <li>‘admin’可以获得前半段flag</li>
 </ul>
-<p>burpsuite抓包，添加cookie<br><img src="/./vx_images/570183910230247.png" alt="burpsuite抓包添加cookie" title="burpsuite抓包添加cookie"><br>成功返回flag1</p>
+<p>burpsuite抓包，添加cookie</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/570183910230247.png" class="" title="burpsuite抓包添加cookie">
+
+<p>成功返回flag1</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">LoginController</span>(<span class="params">req,res</span>) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> username = req.<span class="property">body</span>.<span class="property">username</span></span><br><span class="line">        <span class="keyword">const</span> password = req.<span class="property">body</span>.<span class="property">password</span></span><br><span class="line">        <span class="keyword">if</span> (username !== <span class="string">&quot;admin&quot;</span> || password !== <span class="title class_">Math</span>.<span class="title function_">random</span>().<span class="title function_">toString</span>()) &#123;<span class="comment">//password是随机数，无法获取</span></span><br><span class="line">            res.<span class="title function_">status</span>(<span class="number">401</span>).<span class="title function_">type</span>(<span class="string">&quot;text/html&quot;</span>).<span class="title function_">send</span>(<span class="string">&quot;Login Failed&quot;</span>)</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">//登录成功可以获得SECRET_COOKIE并获得两段flag</span></span><br><span class="line">            res.<span class="title function_">cookie</span>(<span class="string">&quot;user&quot;</span>,<span class="variable constant_">SECRET_COOKIE</span>)</span><br><span class="line">            res.<span class="title function_">redirect</span>(<span class="string">&quot;/flag1&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (__) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>观察main.js找到flag2对应函数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">CheckController</span>(<span class="params">req,res</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> checkcode = req.<span class="property">body</span>.<span class="property">checkcode</span>?req.<span class="property">body</span>.<span class="property">checkcode</span>:<span class="number">1234</span>;<span class="comment">//1、获取页面输入的checkcode，若无则为1234</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">body</span>)</span><br><span class="line">    <span class="keyword">if</span>(checkcode.<span class="property">length</span> === <span class="number">16</span>)&#123;<span class="comment">//2、判断checkcode长度是否为16</span></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            checkcode = checkcode.<span class="title function_">toLowerCase</span>()<span class="comment">//7、toLowerCase()函数最有可能报错</span></span><br><span class="line">            <span class="keyword">if</span>(checkcode !== <span class="string">&quot;aGr5AtSp55dRacer&quot;</span>)&#123;<span class="comment">//5、要让checkcode=aGr5AtSp55dRacer，但前面有转小写处理</span></span><br><span class="line">                res.<span class="title function_">status</span>(<span class="number">403</span>).<span class="title function_">json</span>(&#123;<span class="string">&quot;msg&quot;</span>:<span class="string">&quot;Invalid Checkcode1:&quot;</span> + checkcode&#125;)<span class="comment">//4、验证失败返回Invalid Checkcode1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (__) &#123;&#125;<span class="comment">//6、考虑执行catch部分的内容，即让try部分报错</span></span><br><span class="line">        res.<span class="title function_">status</span>(<span class="number">200</span>).<span class="title function_">type</span>(<span class="string">&quot;text/html&quot;</span>).<span class="title function_">json</span>(&#123;<span class="string">&quot;msg&quot;</span>:<span class="string">&quot;You Got Another Part Of Flag: &quot;</span> + flag2.<span class="title function_">toString</span>().<span class="title function_">trim</span>()&#125;)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;<span class="comment">//3、不是16返回Invalid Checkcode2</span></span><br><span class="line">        res.<span class="title function_">status</span>(<span class="number">403</span>).<span class="title function_">type</span>(<span class="string">&quot;text/html&quot;</span>).<span class="title function_">json</span>(&#123;<span class="string">&quot;msg&quot;</span>:<span class="string">&quot;Invalid Checkcode2:&quot;</span> + checkcode&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>toLowerCase()传入参数为字符串，若传入一个非字符串则会报错。<br>通过抓包修改checkcode传入一个数组：</p>
-<p><img src="/vx_images/147564710248673.png" alt="checkcode" title="checkcode一共16个数"><br>checkcode长度不满16则报Invalid Checkcode2，此处要让数组内有16个元素。<br>然后即可获得flag的后半段回显15792024026197902990902}</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/147564710248673.png" class="" title="checkcode一共16个数">
+
+<p>checkcode长度不满16则报Invalid Checkcode2，此处要让数组内有16个元素。<br>然后即可获得flag的后半段回显15792024026197902990902}</p>
+<h3 id="扭转乾坤"><a href="#扭转乾坤" class="headerlink" title="扭转乾坤"></a>扭转乾坤</h3><img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/282134411230247.png" class="" title="直接上传">
+<p>提示拒绝multipart&#x2F;form-data形式<br>但使用其他形式上传提示上传失败<br>这里使用大小写绕过，抓包改为Multipart&#x2F;form-data即可获得flag</p>
+<h3 id="unusual-php"><a href="#unusual-php" class="headerlink" title="unusual php"></a>unusual php</h3>
+<p><a target="_blank" rel="noopener" href="http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/?a=version%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF%EF%BC%8C%E9%BB%98%E8%AE%A4%E9%A1%B5%E4%B8%BAindex.php">http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81?a=version查看信息，默认页为index.php</a></p>
+<p>尝试使用a&#x3D;read&amp;file&#x3D;index.php读取</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_index.png" class="" title="index显示乱码">
+<p><code>��xn0�\H&gt;��ј��v0z�� ����ޮ(�+�&gt;��t�0�Pp��&#39;#��n� 0@�@��͟�9NF�7�o9��]c�!���Bot���cWg�Z����Zǻ �p��lNu���]�Y����H���b�y�&#125;Rv,�u �/���F �0c��9��DM֟�-�q�/�&lt;��nvbqS%���8��P�*���HA_-��s�^Ԭ�|4�d1ޡ��0�? &#125;�Y�k���s�;`J���k�4������&lt;� �ڤ��\���������G��c��T�ɏ��똯�:��8��V���B�</code><br>分析有可能是使用了引擎扩展<br>在a&#x3D;version显示的phpinfo()的内容中找到配置文件为<code>/usr/local/lib/php.ini</code></p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/98320512236540.png" class="" title="php.ini">
+<p>成功获得php.ini</p>
+<p>右击查看源代码，ctrl+f搜索extension</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/546250712256706.png" class="" title="extension&#x3D;zend_test">
+<p>注意没有使用<code>;</code>注释的extension&#x3D;zend_test</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_zend_so.png" class="" title="确定文件名">
+<p>观察到<br><code>; Note : The syntax used in previous PHP versions (&#39;extension=&lt;ext&gt;.so&#39; and ; &#39;extension=&#39;php_&lt;ext&gt;.dll&#39;) is supported for legacy reasons and may be ; deprecated in a future PHP major version. So, when it is possible, please ; move to the new (&#39;extension=&lt;ext&gt;) syntax.</code><br>推测文件名是zend_test.so或php_zend_test.dll</p>
+<blockquote>
+<p>读取 &#x2F;proc&#x2F;self&#x2F;maps 可查看当前进程的内存映射关系<br>a&#x3D;version 使用ctrl+f查找extension的存放位置</p>
+</blockquote>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_extension.png" class="" title="查找extension位置">
+<p>a&#x3D;read&amp;file&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20190902&#x2F;zend_test.so读取zend_test.so文件</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_zend.png" class="" title="读取zend_test文件">
+<p>然后需要进行逆向(可使用IDA)</p>
+<blockquote>
+<p>后续：<br>上传RC4加密的webshell<br>post请求提交cmd&#x3D;”phpinfo()”发现可以成功返回<br>然后反弹shell</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/" data-id="clds8bmv8000030uzck7f5t6c" data-title="2023西湖论剑WP" class="article-share-link">分享</a>
+      <a data-url="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/" data-id="cldsb693v00006cuzf4lr1dht" data-title="2023西湖论剑WP" class="article-share-link">分享</a>
       
       
       
@@ -170,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://tyelixy.github.io/2023/02/05/hello-world/" data-id="clds8bmvb000130uz02qt7kbv" data-title="Hello World" class="article-share-link">分享</a>
+      <a data-url="http://tyelixy.github.io/2023/02/05/hello-world/" data-id="cldsb693z00016cuzb3cd6912" data-title="Hello World" class="article-share-link">分享</a>
       
       
       
@@ -254,7 +285,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2023 John Doe<br>
+      &copy; 2023 tyelixy<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
