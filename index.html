@@ -99,7 +99,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <blockquote><p>2023西湖论剑初赛复盘笔记<br>参考：<br><a target="_blank" rel="noopener" href="https://f5.pm/go-147926.html"></a><br><a target="_blank" rel="noopener" href="https://www.ctfiot.com/95359.html"></a><br><a target="_blank" rel="noopener" href="https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/#more">blog小窝</a></p>
+        <blockquote><p>2023西湖论剑初赛复盘笔记<br>参考：<br><a target="_blank" rel="noopener" href="https://f5.pm/go-147926.html">https://f5.pm/go-147926.html</a><br><a target="_blank" rel="noopener" href="https://www.ctfiot.com/95359.html">https://www.ctfiot.com/95359.html</a><br><a target="_blank" rel="noopener" href="https://my011215.github.io/2023/02/06/CTF/2022%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91Web/#more">blog小窝</a></p>
 </blockquote>
 
 <h3 id="Node-Magical-Login"><a href="#Node-Magical-Login" class="headerlink" title="Node Magical Login"></a>Node Magical Login</h3><p>main.js中查看路由</p>
@@ -125,8 +125,8 @@
 <h3 id="扭转乾坤"><a href="#扭转乾坤" class="headerlink" title="扭转乾坤"></a>扭转乾坤</h3><img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/282134411230247.png" class="" title="直接上传">
 <p>提示拒绝multipart&#x2F;form-data形式<br>但使用其他形式上传提示上传失败<br>这里使用大小写绕过，抓包改为Multipart&#x2F;form-data即可获得flag</p>
 <h3 id="unusual-php"><a href="#unusual-php" class="headerlink" title="unusual php"></a>unusual php</h3>
-<p><a target="_blank" rel="noopener" href="http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/?a=version%E6%9F%A5%E7%9C%8B%E4%BF%A1%E6%81%AF%EF%BC%8C%E9%BB%98%E8%AE%A4%E9%A1%B5%E4%B8%BAindex.php">http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81?a=version查看信息，默认页为index.php</a></p>
-<p>尝试使用a&#x3D;read&amp;file&#x3D;index.php读取</p>
+<p><a target="_blank" rel="noopener" href="http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81/?a=version">http://80.endpoint-e3b2218dc1d446008a7cacc77c3d9bee.ins.cloud.dasctf.com:81?a=version</a><br>查看信息，默认页为index.php</p>
+<p>尝试使用<code>a=read&amp;file=index.php</code>读取</p>
 <img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/unusual_php_index.png" class="" title="index显示乱码">
 <p><code>��xn0�\H&gt;��ј��v0z�� ����ޮ(�+�&gt;��t�0�Pp��&#39;#��n� 0@�@��͟�9NF�7�o9��]c�!���Bot���cWg�Z����Zǻ �p��lNu���]�Y����H���b�y�&#125;Rv,�u �/���F �0c��9��DM֟�-�q�/�&lt;��nvbqS%���8��P�*���HA_-��s�^Ԭ�|4�d1ޡ��0�? &#125;�Y�k���s�;`J���k�4������&lt;� �ڤ��\���������G��c��T�ɏ��똯�:��8��V���B�</code><br>分析有可能是使用了引擎扩展<br>在a&#x3D;version显示的phpinfo()的内容中找到配置文件为<code>/usr/local/lib/php.ini</code></p>
 <img src="/2023/02/06/2023%E8%A5%BF%E6%B9%96%E8%AE%BA%E5%89%91/98320512236540.png" class="" title="php.ini">
